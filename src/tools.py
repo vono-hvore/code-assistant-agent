@@ -1,8 +1,8 @@
 import os
 from src.codebase_scanner import Scanner
-from rich.console import Console
 
-console = Console()
+approval_handler = None
+log_handler = None
 
 
 async def external_approval_tool(amount: float, reason: str) -> str:
@@ -16,8 +16,8 @@ async def external_approval_tool(amount: float, reason: str) -> str:
     Returns:
         str: 'approved' if the user confirms, 'rejected' if they decline
     """
-    console.print(f"⚠️ Approval required for {amount:.2f}\nReason: {reason}")
-    response = input("Do you approve this request? (yes/no): ")
+    log_handler(f"⚠️ Approval required for {amount:.2f}\nReason: {reason}")
+    response = await approval_handler()
     if response.strip().lower() == "yes":
         return "approved"
     else:
@@ -37,11 +37,11 @@ async def read_folder(path: str = ".") -> dict:
               If 'success', includes 'files' is a list of file paths of the current folder.
               If 'error', includes an 'error_message' key.
     """
-    print(f"📖 Reading a folder at path {path}")
+    log_handler(f"📖 Reading a folder at path {path}")
     scanner = Scanner()
     codebase = await scanner.scan_path(root_path=path)
     pretty_codebase = scanner.prettier(codebase)
-    print(pretty_codebase)
+    log_handler(pretty_codebase)
     return {"status": "success", "files": codebase}
 
 
@@ -55,7 +55,7 @@ def read_file(path: str) -> dict:
     Returns:
         dict: A dictionary containing status and either the content or an error message.
     """
-    print(f"📖 Reading a file at path ${path}")
+    log_handler(f"📖 Reading a file at path ${path}")
     try:
         with open(path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -77,7 +77,7 @@ async def edit_file(path: str, content: str) -> dict:
     Returns:
         dict: Status and message.
     """
-    print(f"✏️Edit a file at path ${path} with content:\n{content}")
+    log_handler(f"✏️Edit a file at path ${path} with content:\n{content}")
     try:
         os.makedirs(os.path.dirname(path), exist_ok=True)
 
@@ -100,7 +100,7 @@ async def delete_file(path: str) -> dict:
     Returns:
         dict: Result with 'status' and 'message'.
     """
-    print(f"☠️Deleting file at path ${path}")
+    log_handler(f"☠️Deleting file at path ${path}")
 
     try:
         if not os.path.exists(path):

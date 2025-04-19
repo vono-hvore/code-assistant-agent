@@ -60,7 +60,7 @@ class MainApp(App):
         markdown.code_light_theme = "textual-dark"
         conversation_box = self.query_one("#conversation_box")
         conversation_box.mount(markdown)
-        conversation_box.scroll_to_widget(markdown, top=True)
+        conversation_box.scroll_to_widget(markdown)
 
     def loader_start(self):
         conversation_box = self.query_one("#conversation_box")

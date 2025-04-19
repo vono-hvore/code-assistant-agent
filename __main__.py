@@ -1,9 +1,12 @@
-from ui.cli_ui import MainApp
+from ui.cli_ui import MainApp, ChatMessage
+from src.tools import approval_handler, log_handler
+import src.tools as tools
 from dotenv import load_dotenv
 import logging
 import warnings
 from src.runner import runner, USER_ID, SESSION_ID
 from google.genai import types
+import asyncio
 
 
 async def process_message(message: str):
@@ -29,6 +32,31 @@ async def process_message(message: str):
         await app.loader_stop()
 
 
+async def get_approval():
+    approval_future = asyncio.Future()
+
+    def handle_approval_response(message):
+        response = message.strip().lower()
+        approval_future.set_result(response)
+
+    original_handler = app.input_handler
+
+    app.input_handler = handle_approval_response
+    app.send_message(
+        "⚠️ APPROVAL REQUIRED: Type 'yes' to approve or anything else to reject",
+        mode="agent",
+    )
+    try:
+        response = await approval_future
+        return response
+    finally:
+        app.input_handler = original_handler
+
+
+def process_log(message: str):
+    app.send_message(message, mode="log")
+
+
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     logging.basicConfig(level=logging.ERROR)
@@ -36,4 +64,6 @@ if __name__ == "__main__":
 
     app = MainApp()
     app.input_handler = process_message
+    tools.approval_handler = get_approval
+    tools.log_handler = process_log
     app.run()

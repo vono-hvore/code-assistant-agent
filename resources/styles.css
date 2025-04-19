@@ -69,6 +69,11 @@ LoadingIndicator {
   color: red;
 }
 
+.log {
+  background: gray 20%;
+  outline: wide gray;
+}
+
 #input_box {
   dock: bottom;
   width: 100%;
