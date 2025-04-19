@@ -16,7 +16,7 @@ async def external_approval_tool(amount: float, reason: str) -> str:
     Returns:
         str: 'approved' if the user confirms, 'rejected' if they decline
     """
-    log_handler(f"⚠️ Approval required for {amount:.2f}\nReason: {reason}")
+    log_handler(f"Wating for approval yes/no for: {reason}")
     response = await approval_handler()
     if response.strip().lower() == "yes":
         return "approved"

@@ -46,7 +46,7 @@ class MainApp(App):
     def on_input_submitted(self, event: Input.Submitted) -> None:
         message = event.value.strip()
         if message:
-            self.run_worker(self.input_handler(message), exclusive=True)
+            self.run_worker(self.input_handler(message), exclusive=False)
         event.input.value = ""
 
     def send_message(self, message: str, mode: str = "user"):
@@ -60,7 +60,7 @@ class MainApp(App):
         markdown.code_light_theme = "textual-dark"
         conversation_box = self.query_one("#conversation_box")
         conversation_box.mount(markdown)
-        conversation_box.scroll_to_widget(markdown)
+        conversation_box.scroll_page_down()
 
     def loader_start(self):
         conversation_box = self.query_one("#conversation_box")

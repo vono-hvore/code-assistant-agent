@@ -33,24 +33,17 @@ async def process_message(message: str):
 
 
 async def get_approval():
-    approval_future = asyncio.Future()
+    future = asyncio.Future()
 
-    def handle_approval_response(message):
+    async def handle_approval_response(message):
         response = message.strip().lower()
-        approval_future.set_result(response)
+        if not future.done():  # Check if future is not already done
+            future.set_result(response)
 
-    original_handler = app.input_handler
-
+    prev_handler = app.input_handler
     app.input_handler = handle_approval_response
-    app.send_message(
-        "⚠️ APPROVAL REQUIRED: Type 'yes' to approve or anything else to reject",
-        mode="agent",
-    )
-    try:
-        response = await approval_future
-        return response
-    finally:
-        app.input_handler = original_handler
+    result = await future
+    return result
 
 
 def process_log(message: str):
