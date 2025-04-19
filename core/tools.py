@@ -1,5 +1,5 @@
 import os
-from codebase_scanner import Scanner
+from core.codebase_scanner import Scanner
 
 
 async def external_approval_tool(amount: float, reason: str) -> str:

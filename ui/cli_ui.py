@@ -22,6 +22,14 @@ class MainApp(App):
     loader = LoadingIndicator(id="loading")
     chat_log = reactive("")
 
+    @property
+    def input_handler(self):
+        return self._input_handler
+
+    @input_handler.setter
+    def input_handler(self, handler):
+        self._input_handler = handler
+
     def on_mount(self) -> None:
         self.theme = "textual-ansi"
 
@@ -38,16 +46,16 @@ class MainApp(App):
     def on_input_submitted(self, event: Input.Submitted) -> None:
         message = event.value.strip()
         if message:
-            self.send_message(message)
+            self.run_worker(self.input_handler(message), exclusive=True)
         event.input.value = ""
 
-    def send_message(self, message: str):
+    def send_message(self, message: str, mode: str = "user"):
         conversation_box = self.query_one("#conversation_box")
-        conversation_box.mount(Static(f"{message}", classes="message user"))
+        conversation_box.mount(Static(f"{message}", classes=f"message {mode}"))
         conversation_box.scroll_end(animate=False)
 
-    def send_markdown(self, content: str):
-        markdown = Markdown(f"{content}", classes="message agent")
+    def send_markdown(self, content: str, mode: str = "agent"):
+        markdown = Markdown(f"{content}", classes=f"message {mode}")
         markdown.code_dark_theme = "textual-dark"
         markdown.code_light_theme = "textual-dark"
         conversation_box = self.query_one("#conversation_box")
@@ -60,6 +68,3 @@ class MainApp(App):
 
     async def loader_stop(self):
         await self.loader.remove()
-
-
-app = MainApp()

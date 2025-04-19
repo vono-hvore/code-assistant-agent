@@ -1,15 +1,3 @@
-Screen {
-  layout: vertical;
-  background: #000000;
-  align-horizontal: center;
-  scrollbar-background: #696969;
-  scrollbar-background-active: #696969;
-  scrollbar-background-hover: #696969;
-  scrollbar-color: #A9A9A9;
-  scrollbar-color-active: #A9A9A9;
-  scrollbar-color-hover: #A9A9A9;
-}
-
 * {
   scrollbar-background: #696969;
   scrollbar-background-active: #696969;
@@ -19,19 +7,25 @@ Screen {
   scrollbar-color-hover: #A9A9A9;
 }
 
-Markdown { }
+Screen {
+  layout: vertical;
+  background: #000000;
+  align-horizontal: center;
+}
+
+Markdown { 
+  padding: 0;
+  margin: 0;
+}
 
 LoadingIndicator {
   color: #A9A9A9;
-  width: 10;
-  height: 2;
-  margin-left: 5;
+  margin-left: 2;
 }
 
 #loading {
-  width: 10;
-  height: 2;
-  margin-left: 5;
+  width: 5;
+  height: 1;
 }
 
 #ascii-art-container {
@@ -44,6 +38,7 @@ LoadingIndicator {
   align-horizontal: center;
   color: #ff6b6b;
   content-align: center middle;
+  width: 90;
 }
 
 #conversation_box_centered {
@@ -53,15 +48,10 @@ LoadingIndicator {
 
 #conversation_box {
   overflow: hidden auto;
-  width: 50%;
-  scrollbar-background: #696969;
-  scrollbar-background-active: #696969;
-  scrollbar-background-hover: #696969;
-  scrollbar-color: #A9A9A9;
-  scrollbar-color-active: #A9A9A9;
-  scrollbar-color-hover: #A9A9A9;
   border: tall #A9A9A9;
   margin: 1 0;
+
+  width: 90;
 }
 
 .message {
@@ -75,18 +65,19 @@ LoadingIndicator {
 
 .agent { }
 
+.error {
+  color: red;
+}
+
 #input_box {
   dock: bottom;
-  height: auto;
   width: 100%;
   align-horizontal: center;
-  margin: 0;
+  height: auto;
 }
 
 #message_input {
-  width: 50%;
-  height: auto;
-  text-align: center;
+  width: 90;
   background: #000000;
   border: tall #A9A9A9;
 }

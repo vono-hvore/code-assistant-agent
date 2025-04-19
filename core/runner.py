@@ -1,4 +1,4 @@
-from agents import root_agent
+from core.agents import root_agent
 from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner
 
@@ -16,3 +16,6 @@ runner = Runner(
     session_service=session_service,
     agent=root_agent,
 )
+
+# Export these variables for use in main.py
+__all__ = ["runner", "USER_ID", "SESSION_ID", "APP_NAME"]
