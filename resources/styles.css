@@ -1,0 +1,92 @@
+Screen {
+  layout: vertical;
+  background: #000000;
+  align-horizontal: center;
+  scrollbar-background: #696969;
+  scrollbar-background-active: #696969;
+  scrollbar-background-hover: #696969;
+  scrollbar-color: #A9A9A9;
+  scrollbar-color-active: #A9A9A9;
+  scrollbar-color-hover: #A9A9A9;
+}
+
+* {
+  scrollbar-background: #696969;
+  scrollbar-background-active: #696969;
+  scrollbar-background-hover: #696969;
+  scrollbar-color: #A9A9A9;
+  scrollbar-color-active: #A9A9A9;
+  scrollbar-color-hover: #A9A9A9;
+}
+
+Markdown { }
+
+LoadingIndicator {
+  color: #A9A9A9;
+  width: 10;
+  height: 2;
+  margin-left: 5;
+}
+
+#loading {
+  width: 10;
+  height: 2;
+  margin-left: 5;
+}
+
+#ascii-art-container {
+  align-horizontal: center;
+  align-vertical: middle;
+  height: 23;
+}
+
+#ascii-art {
+  align-horizontal: center;
+  color: #ff6b6b;
+  content-align: center middle;
+}
+
+#conversation_box_centered {
+  width: 100%;
+  align-horizontal: center;
+}
+
+#conversation_box {
+  overflow: hidden auto;
+  width: 50%;
+  scrollbar-background: #696969;
+  scrollbar-background-active: #696969;
+  scrollbar-background-hover: #696969;
+  scrollbar-color: #A9A9A9;
+  scrollbar-color-active: #A9A9A9;
+  scrollbar-color-hover: #A9A9A9;
+  border: tall #A9A9A9;
+  margin: 1 0;
+}
+
+.message {
+  width: 100%;
+  margin: 1;
+}
+
+.user {
+  color: #696969
+}
+
+.agent { }
+
+#input_box {
+  dock: bottom;
+  height: auto;
+  width: 100%;
+  align-horizontal: center;
+  margin: 0;
+}
+
+#message_input {
+  width: 50%;
+  height: auto;
+  text-align: center;
+  background: #000000;
+  border: tall #A9A9A9;
+}
