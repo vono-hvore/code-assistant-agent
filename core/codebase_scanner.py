@@ -94,7 +94,8 @@ class Scanner:
         return matches
 
     def prettier(self, paths: list[str]) -> str:
-        file_tree = defaultdict()
+        tree = lambda: defaultdict(tree)
+        file_tree = tree()
         pretty_str = ""
 
         for path in paths:

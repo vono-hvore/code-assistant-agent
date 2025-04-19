@@ -1,5 +1,8 @@
 import os
 from core.codebase_scanner import Scanner
+from rich.console import Console
+
+console = Console()
 
 
 async def external_approval_tool(amount: float, reason: str) -> str:
@@ -13,7 +16,7 @@ async def external_approval_tool(amount: float, reason: str) -> str:
     Returns:
         str: 'approved' if the user confirms, 'rejected' if they decline
     """
-    print(f"⚠️ Approval required for {amount:.2f}\nReason: {reason}")
+    console.print(f"⚠️ Approval required for {amount:.2f}\nReason: {reason}")
     response = input("Do you approve this request? (yes/no): ")
     if response.strip().lower() == "yes":
         return "approved"

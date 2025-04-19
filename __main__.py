@@ -1,4 +1,4 @@
-from ui.cli_ui import MainApp, ChatMessage
+from ui.cli_ui import MainApp
 from dotenv import load_dotenv
 import logging
 import warnings
@@ -21,8 +21,10 @@ async def process_message(message: str):
                 elif event.actions and event.actions.escalate:
                     final_response_text = f"Agent escalated: {event.error_message or 'No specific message.'}"
                 app.send_markdown(f"T-800: {final_response_text}")
+                await app.loader_stop()
     except Exception as e:
         app.send_message(f"Error: {str(e)}", mode="error")
+        raise e
     finally:
         await app.loader_stop()
 
