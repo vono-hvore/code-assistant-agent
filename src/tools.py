@@ -37,7 +37,7 @@ async def read_folder(path: str = ".") -> dict:
               If 'success', includes 'files' is a list of file paths of the current folder.
               If 'error', includes an 'error_message' key.
     """
-    log_handler(f"📖 Reading a folder at path {path}")
+    log_handler(f"Reading a folder at path {path}")
     scanner = Scanner()
     codebase = await scanner.scan_path(root_path=path)
     pretty_codebase = scanner.prettier(codebase)
@@ -55,7 +55,7 @@ def read_file(path: str) -> dict:
     Returns:
         dict: A dictionary containing status and either the content or an error message.
     """
-    log_handler(f"📖 Reading a file at path ${path}")
+    log_handler(f"Reading a file at path ${path}")
     try:
         with open(path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -100,7 +100,7 @@ async def delete_file(path: str) -> dict:
     Returns:
         dict: Result with 'status' and 'message'.
     """
-    log_handler(f"☠️Deleting file at path ${path}")
+    log_handler(f"Deleting file at path ${path}")
 
     try:
         if not os.path.exists(path):
