@@ -1,5 +1,5 @@
 import os
-from core.codebase_scanner import Scanner
+from src.codebase_scanner import Scanner
 from rich.console import Console
 
 console = Console()

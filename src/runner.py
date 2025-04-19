@@ -1,4 +1,4 @@
-from core.agents import root_agent
+from src.agents import root_agent
 from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner
 

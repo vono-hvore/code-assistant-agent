@@ -2,7 +2,7 @@ from google.adk.agents import LlmAgent
 from google.adk.models.lite_llm import LiteLlm
 from google.adk.tools import FunctionTool
 
-from core.tools import (
+from src.tools import (
     delete_file,
     edit_file,
     external_approval_tool,

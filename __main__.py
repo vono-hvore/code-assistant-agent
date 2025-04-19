@@ -2,7 +2,7 @@ from ui.cli_ui import MainApp
 from dotenv import load_dotenv
 import logging
 import warnings
-from core.runner import runner, USER_ID, SESSION_ID
+from src.runner import runner, USER_ID, SESSION_ID
 from google.genai import types
 
 
