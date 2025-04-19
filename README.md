@@ -5,10 +5,8 @@ style="max-width: 100%; height: auto;">
 </p>
 
 # About
-This is a code assistance agent designed to help you refactor, edit, delete, and move code efficiently.
-It was created for educational purposes while learning the Google Development Agent Kit (Google ADK).
-
-The agent demonstrates how AI can assist in managing and improving codebases by automating routine development tasks. It is currently compatible only with the Anthropic LLM model.
+This is a code assistance was created for educational purposes while learning the Google Development Agent Kit (Google ADK).
+It is currently compatible only with the Anthropic LLM model.
 
 # Feature
 - Read and understand code structure
