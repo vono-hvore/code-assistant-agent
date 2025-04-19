@@ -20,8 +20,6 @@ The agent demonstrates how AI can assist in managing and improving codebases by 
 
 # How to run
 ```
-python -m venv env
-source env/bin/activate
 pip install -r requirements
 export ANTHROPIC_API_KEY="YOUR_TOKEN"
 python .
